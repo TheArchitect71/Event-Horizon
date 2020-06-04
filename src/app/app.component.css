@@ -24,3 +24,12 @@
 .brand-name {
     overflow: auto;
 }
+
+/* Card */
+mat-card {
+  width: 232px;
+}
+
+[mat-card-image] {
+  height: 330px;
+}
