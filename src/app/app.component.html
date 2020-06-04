@@ -12,9 +12,9 @@
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+    <button mat-button [matMenuTriggerFor]="services">Services</button>
 
-    <mat-menu #animals="matMenu">
+    <mat-menu #services="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="vertebrates">
         Vertebrates
       </button>
@@ -67,5 +67,18 @@
 
   <div class="example-sidenav-content">
     <mat-card>Simple card</mat-card>
+    <mat-card *ngFor="let astronaut of astronauts | async">
+      <mat-card-title>{{astronaut.name}}</mat-card-title>
+      <mat-card-content>
+        <dl>
+          <dt class="mat-small">Name</dt>
+          <dd class="mat-body-2">{{ astronaut.name }}</dd>
+          <dt class="mat-small">Space walks</dt>
+          <dd class="mat-body-2">{{ astronaut.spaceWalks }}</dd>
+          <dt class="mat-small">Undergraduate major</dt>
+          <dd class="mat-body-2">{{ astronaut.undergraduateMajor }}</dd>
+        </dl>
+      </mat-card-content>
+    </mat-card>
   </div>
 </mat-drawer-container>
