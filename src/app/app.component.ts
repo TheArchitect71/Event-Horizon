@@ -1,10 +1,12 @@
-import { Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component} from '@angular/core';
 import { ClientsService } from './clients.service';
 import { Observable } from 'rxjs';
 import { Astronaut, FilterState, Filter, Option } from './types';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
