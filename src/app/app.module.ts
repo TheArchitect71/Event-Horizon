@@ -1,29 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
-import { ServiceOptionComponent } from './service-option/service-option.component';
-
-import { AngularMaterialModule } from './angular-material.module';
-
+import { OverviewComponent, DirectoryComponent, PersonDetailComponent, PersonFormComponent, AboutComponent, NotFoundComponent } from './directory/pages';
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ServiceOptionComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-    HttpClientModule
-  ],
-  providers: [provideZoneChangeDetection()],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, OverviewComponent, DirectoryComponent, PersonDetailComponent, PersonFormComponent, AboutComponent, NotFoundComponent],
+  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
+  providers: [provideZoneChangeDetection()], bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

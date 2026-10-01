@@ -1,84 +1,11 @@
-<mat-toolbar class="toolbar">
-  <div>
-    <button aria-label="Toggle services menu" mat-icon-button color="accent" (click)="drawer.toggle()">
-      <span aria-hidden="true">☰</span>
-    </button>
-  </div>
-  <div>
-    <span class="brand-name">
-      Event Horizon
-    </span>
-  </div>
-</mat-toolbar>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-button [matMenuTriggerFor]="services">Services</button>
-
-    <mat-menu #services="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="vertebrates">
-        Vertebrates
-      </button>
-      <button mat-menu-item [matMenuTriggerFor]="invertebrates">
-        Invertebrates
-      </button>
-    </mat-menu>
-
-    <mat-menu #vertebrates="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-      <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-      <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-      <button mat-menu-item>Birds</button>
-      <button mat-menu-item>Mammals</button>
-    </mat-menu>
-
-    <mat-menu #invertebrates="matMenu">
-      <button mat-menu-item>Insects</button>
-      <button mat-menu-item>Molluscs</button>
-      <button mat-menu-item>Crustaceans</button>
-      <button mat-menu-item>Corals</button>
-      <button mat-menu-item>Arachnids</button>
-      <button mat-menu-item>Velvet worms</button>
-      <button mat-menu-item>Horseshoe crabs</button>
-    </mat-menu>
-
-    <mat-menu #fish="matMenu">
-      <button mat-menu-item>Baikal oilfish</button>
-      <button mat-menu-item>Bala shark</button>
-      <button mat-menu-item>Ballan wrasse</button>
-      <button mat-menu-item>Bamboo shark</button>
-      <button mat-menu-item>Banded killifish</button>
-    </mat-menu>
-
-    <mat-menu #amphibians="matMenu">
-      <button mat-menu-item>Sonoran desert toad</button>
-      <button mat-menu-item>Western toad</button>
-      <button mat-menu-item>Arroyo toad</button>
-      <button mat-menu-item>Yosemite toad</button>
-    </mat-menu>
-
-    <mat-menu #reptiles="matMenu">
-      <button mat-menu-item>Banded Day Gecko</button>
-      <button mat-menu-item>Banded Gila Monster</button>
-      <button mat-menu-item>Black Tree Monitor</button>
-      <button mat-menu-item>Blue Spiny Lizard</button>
-      <button mat-menu-item disabled>Velociraptor</button>
-    </mat-menu>
-  </mat-drawer>
-
-  <main class="astronauts-content">
-    <h1>Astronauts</h1>
-    <div class="astronaut-grid">
-      <mat-card *ngFor="let astronaut of astronauts | async">
-        <mat-card-header><mat-card-title>{{ astronaut.name }}</mat-card-title></mat-card-header>
-        <mat-card-content>
-          <dl>
-            <dt>Space walks</dt>
-            <dd>{{ astronaut.spaceWalks }}</dd>
-            <dt>Undergraduate major</dt>
-            <dd>{{ astronaut.undergraduateMajor }}</dd>
-          </dl>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </main>
-</mat-drawer-container>
+<header class="app-header">
+  <a class="brand" routerLink="/overview">Event Horizon<span>People workspace</span></a>
+  <button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="main-navigation">Menu</button>
+  <nav id="main-navigation" aria-label="Main navigation" [class.open]="menuOpen">
+    <a routerLink="/overview" routerLinkActive="selected" (click)="menuOpen = false">Overview</a>
+    <a routerLink="/people" routerLinkActive="selected" (click)="menuOpen = false">People</a>
+    <a routerLink="/about" routerLinkActive="selected" (click)="menuOpen = false">About</a>
+  </nav>
+</header>
+<main id="main-content"><router-outlet></router-outlet></main>
+<footer>Event Horizon + Epsilon · Browser-local workspace</footer>

@@ -1,69 +1,72 @@
-.example-container {
-  min-height: calc(100vh - 64px);
+.app-header {
+  display:flex;
+  align-items:center;
+  gap:40px;
+  padding:22px 5%;
+  border-bottom:1px solid #3a3e4d;
+  background:#242733;
 }
-
-.astronauts-content {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 32px 24px 48px;
+.brand {
+  font-size:22px;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff;
 }
-
-.astronauts-content h1 {
-  margin: 0 0 24px;
-  font-size: 28px;
-  line-height: 1.25;
+.brand span {
+  display:block;
+  font-size:12px;
+  font-weight:400;
+  color:#b6bbca;
+  margin-top:5px;
 }
-
-.astronaut-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+nav {
+  display:flex;
+  gap:8px;
+  margin-left:auto;
 }
-
-.astronaut-grid mat-card {
-  min-width: 0;
+nav a {
+  padding:10px 18px;
+  border-radius:6px;
+  color:#c7cada;
+  text-decoration:none;
 }
-
-.astronaut-grid mat-card-title {
-  line-height: 1.3;
-  overflow-wrap: anywhere;
+nav a:hover,nav a.selected {
+  background:#383448;
+  color:#ffa3c4;
 }
-
-.astronaut-grid mat-card-content {
-  margin-top: 20px;
+main {
+  max-width:1200px;
+  margin:auto;
+  padding:40px 5%;
+  min-height:calc(100vh - 235px);
 }
-
-.astronaut-grid dl {
-  margin: 0;
+footer {
+  padding:22px 5%;
+  border-top:1px solid #3a3e4d;
+  color:#a8aebb;
+  font-size:12px;
 }
-
-.astronaut-grid dt {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  line-height: 1.5;
+.menu-toggle {
+  display:none;
 }
-
-.astronaut-grid dd {
-  margin: 2px 0 16px;
-  overflow-wrap: anywhere;
-}
-
-.astronaut-grid dd:last-child {
-  margin-bottom: 0;
-}
-
-.example-sidenav {
-  padding: 20px;
-}
-
-@media (max-width: 599px) {
-  .example-container {
-    min-height: calc(100vh - 56px);
+@media(max-width:600px) {
+  .app-header {
+    flex-wrap:wrap;
+    gap:12px;
   }
-
-  .astronauts-content {
-    padding: 24px 16px 40px;
+  .menu-toggle {
+    display:block;
+    margin-left:auto;
+  }
+  nav {
+    display:none;
+    width:100%;
+    margin:0;
+  }
+  nav.open {
+    display:flex;
+  }
+  main {
+    padding-top:24px;
   }
 }

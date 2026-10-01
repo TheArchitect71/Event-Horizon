@@ -1,0 +1,10 @@
+<a class="back-link" routerLink="/people">Back to people</a>
+<p *ngIf="store.loading" role="status">Loading profile…</p><p *ngIf="store.error" class="error" role="alert">{{ store.error }}</p>
+<ng-container *ngIf="person as p"><p class="success" role="status" *ngIf="message">{{ message }}</p><div class="page-heading"><div><h1>{{ p.name }}</h1><p>{{ p.role }} · {{ p.organization || 'No organization' }}</p></div><div class="actions"><a class="button primary" [routerLink]="['/people', p.id, 'edit']">Edit person</a><button class="danger" (click)="confirming = true">Delete person</button></div></div>
+  <section class="panel" *ngIf="confirming" aria-labelledby="delete-heading"><h2 id="delete-heading">Delete {{ p.name }}?</h2><p>This removes the profile from this browser’s directory. This action cannot be undone.</p><div class="actions"><button class="danger" (click)="remove()">Confirm delete</button><button (click)="confirming = false">Cancel</button></div></section>
+  <p class="error" role="alert" *ngIf="error">{{ error }}</p>
+  <section class="panel"><h2>Profile</h2><dl class="details"><div><dt>Status</dt><dd>{{ p.status }}</dd></div><div><dt>Expertise</dt><dd>{{ p.expertise || 'Not specified' }}</dd></div><div><dt>Organization</dt><dd>{{ p.organization || 'Not specified' }}</dd></div><div *ngIf="p.almaMater"><dt>Education</dt><dd>{{ p.almaMater }}</dd></div></dl></section>
+  <section class="panel"><h2>Notes</h2><p class="notes">{{ p.notes || 'No notes yet. Edit this person to add context.' }}</p></section>
+  <section class="panel" *ngIf="p.spaceFlights !== undefined"><h2>Spaceflight background</h2><p class="muted">Historical details from the original sample dataset.</p><dl class="details"><div><dt>Space flights</dt><dd>{{ p.spaceFlights }}</dd></div><div><dt>Space walks</dt><dd>{{ p.spaceWalks }}</dd></div><div><dt>Missions</dt><dd>{{ p.missions || 'Not specified' }}</dd></div></dl></section>
+</ng-container>
+<div *ngIf="!store.loading && !store.error && !person"><h1>Person not found</h1><p>This profile may have been deleted or the address may be incorrect.</p></div>

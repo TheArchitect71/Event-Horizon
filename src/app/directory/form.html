@@ -1,0 +1,14 @@
+<a class="back-link" [routerLink]="cancelLink">{{ id ? 'Back to profile' : 'Back to people' }}</a><h1>{{ id ? 'Edit person' : 'Add person' }}</h1><p>Keep a useful profile for someone in your network. Required fields are marked with *.</p>
+<p *ngIf="store.loading" role="status">Loading directory…</p><p class="error" role="alert" *ngIf="store.error">{{ store.error }}</p><p *ngIf="missing">This person could not be found.</p>
+<form class="panel profile-form" [formGroup]="form" (ngSubmit)="save()" *ngIf="!store.loading && !store.error && !missing">
+  <div class="form-grid">
+    <label>Name *<input formControlName="name" maxlength="120" autocomplete="name" [attr.aria-invalid]="invalid('name')" aria-describedby="name-error"><small id="name-error" class="field-error" *ngIf="invalid('name')">Enter a name (up to 120 characters).</small></label>
+    <label>Role *<input formControlName="role" maxlength="120" placeholder="Engineer, researcher, collaborator…" [attr.aria-invalid]="invalid('role')" aria-describedby="role-error"><small id="role-error" class="field-error" *ngIf="invalid('role')">Enter a role (up to 120 characters).</small></label>
+    <label>Organization<input formControlName="organization" maxlength="160" autocomplete="organization"></label>
+    <label>Status *<input formControlName="status" maxlength="80" list="statuses" [attr.aria-invalid]="invalid('status')" aria-describedby="status-error"><datalist id="statuses"><option value="Active"></option><option value="Inactive"></option><option value="Archived"></option></datalist><small id="status-error" class="field-error" *ngIf="invalid('status')">Enter a status (up to 80 characters).</small></label>
+    <label class="full-width">Expertise<input formControlName="expertise" maxlength="200" placeholder="Physics, operations, design…"></label>
+    <label class="full-width">Notes<textarea formControlName="notes" maxlength="4000" rows="5"></textarea><small>{{ form.controls.notes.value.length }} / 4000 characters</small></label>
+  </div>
+  <p class="error" role="alert" *ngIf="error">{{ error }}</p><p class="field-error" role="alert" *ngIf="submitted && form.invalid">Review the highlighted fields before saving.</p>
+  <div class="actions"><button type="submit" class="primary">{{ id ? 'Save changes' : 'Create person' }}</button><a class="button" [routerLink]="cancelLink">Cancel</a></div>
+</form>
